@@ -8,10 +8,10 @@
 
 int binary_tree_balance(const binary_tree_t *tree)
 {
-	int bf = 0, l_edges = 1, r_edges = 1;
+	int bf = 0, l_edges = 0, r_edges = 0;
 	const binary_tree_t *root = tree;
 
-	if (!tree)
+	if (tree == NULL)
 		return (bf);
 	while (tree->left)
 	{
