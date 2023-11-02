@@ -38,5 +38,16 @@ size_t binary_tree_leaves(const binary_tree_t *tree);
 int binary_tree_balance(const binary_tree_t *tree);
 int binary_tree_is_perfect(const binary_tree_t *tree);
 binary_tree_t *binary_tree_uncle(binary_tree_t *node);
+void binary_tree_levelorder(const binary_tree_t *tree, void (*func)(int));
+binary_tree_t *binary_tree_rotate_left(binary_tree_t *tree);
+int binary_tree_is_bst(const binary_tree_t *tree);
+binary_tree_t *binary_tree_rotate_left(binary_tree_t *tree);
+int binary_tree_is_bst(const binary_tree_t *tree);
+bst_t *bst_remove(bst_t *root, int value);
+int binary_tree_is_avl(const binary_tree_t *tree);
+avl_t *array_to_avl(int *array, size_t size);
+avl_t *sorted_array_to_avl(int *array, size_t size);
+int binary_tree_is_heap(const binary_tree_t *tree);
+int *heap_to_sorted_array(heap_t *heap, size_t *size);
 
 #endif
