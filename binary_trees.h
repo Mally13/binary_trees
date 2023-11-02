@@ -49,5 +49,6 @@ avl_t *array_to_avl(int *array, size_t size);
 avl_t *sorted_array_to_avl(int *array, size_t size);
 int binary_tree_is_heap(const binary_tree_t *tree);
 int *heap_to_sorted_array(heap_t *heap, size_t *size);
-
+void binary_tree_delete(binary_tree_t *tree);
+int binary_tree_is_root(const binary_tree_t *node);
 #endif
