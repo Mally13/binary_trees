@@ -10,30 +10,26 @@ void binary_tree_levelorder(const binary_tree_t *tree, void (*func)(int))
 	const binary_tree_t *currentLevel[100];
 	const binary_tree_t *nextLevel[100];
 	const binary_tree_t *current;
-	const binary_tree_t **temp;
-	int currentLevelSize = 0, nextLevelSize = 0;
+	int i, currentLevelSize = 0, nextLevelSize = 0;
 
 	if (tree && func)
 	{
 		currentLevel[currentLevelSize++] = tree;
 		while (currentLevelSize > 0)
-		{
-			current = currentLevel[currentLevelSize - 1];
-			func(current->n);
-			currentLevelSize--;
-
-			if (current->left != NULL)
-				nextLevel[nextLevelSize++] = current->left;
-			if (current->right != NULL)
-				nextLevel[nextLevelSize++] = current->right;
-
-			if (currentLevelSize == 0)
+		{	
+			nextLevelSize = 0;
+			for (i = 0; i < currentLevelSize; i++)
 			{
-				temp = currentLevel;
-				currentLevel = nextLevel;
-				nextLevel = temp;
-				currentLevelSize = nextLevelSize;
-				nextLevelSize = 0;
+				current = currentLevel[i];
+				func(current->n);
+				if (current->left != NULL)
+					nextLevel[nextLevelSize++] = current->left;
+				if (current->right != NULL)
+					nextLevel[nextLevelSize++] = current->right;
 			}
+			for (i = 0; i < nextLevelSize; i++)
+				currentLevel[i] = nextLevel[i];
+			currentLevelSize = nextLevelSize;
+		}
 	}
 }
