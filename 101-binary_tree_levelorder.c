@@ -1,7 +1,8 @@
 #include "binary_trees.h"
 
 /**
- * binary_tree_levelorder - Goes through a binary tree using level-order traversal
+ * binary_tree_levelorder - Goes through a binary tree using
+ * level-order traversal
  * @tree: tree to be traversed
  * @func: pointer to the function to call
  */
@@ -16,7 +17,7 @@ void binary_tree_levelorder(const binary_tree_t *tree, void (*func)(int))
 	{
 		currentLevel[currentLevelSize++] = tree;
 		while (currentLevelSize > 0)
-		{	
+		{
 			nextLevelSize = 0;
 			for (i = 0; i < currentLevelSize; i++)
 			{
