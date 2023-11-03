@@ -1,52 +1,61 @@
 #include "binary_trees.h"
+/*
+binary_tree_height - measures the height of a binary tree.
+@tree: pointer to the root node of the tree to measure the height
+Return: tree is null , return 0
+*/
 
-
-/**
- * max - Returns the max value (a or b)
- * @a: value 1
- * @b: value 2
- * Return: max value
- */
-int max(int a, int b)
+size_t binary_tree_height(const binary_tree_t *tree)
 {
-	return ((a > b) ? a : b);
-}
-
-
-/**
- * binary_tree_height - Calculates tha height of a tree
- * @tree: tree to be evaluated
- * Return: height of the tree
- */
-int binary_tree_height(const binary_tree_t *tree)
-{
-	int l_height, r_height, height;
-
-	if (tree == NULL)
+	if (tree)
 	{
-		return (0);
+		int left = 0, right = 0;
+		if (tree->right)
+				right = 1 + binary_tree_height(tree->right);
+		if (tree->left)
+				left = 1 + binary_tree_height(tree->left);
+		if (left > right)
+				return (left);
+		else
+				return (right);
 	}
-	l_height = binary_tree_height(tree->left);
-	r_height = binary_tree_height(tree->right);
-	height = 1 + max(l_height, r_height);
-	return (height);
+	else
+		return (0);
 }
+/*
+binary_tree_size - measures the size of a binary tree
+@tree: pointer  to the root node of the tree to measure the size
+Return: if tree is Null,return 0.
+*/
+size_t binary_tree_size(const binary_tree_t *tree)
+{
+	if (tree == NULL)
+			return (0);
+	{
+			size_t n_left, n_right;
 
-/**
- * binary_tree_is_perfect - Checks if a binary tree is perfect
- * @tree: pointer to the root node of the tree to check
- * Return: perfection of the tree, return 0 if tree is NULL
- */
+			n_right = binary_tree_size(tree->right);
+			n_left= binary_tree_size(tree->left);
+			return (1 + n_left + n_right);
+	}
+}
+/*
+binary_tree_is_perfect -checks if a binary tree is perfect.
+@tree: pointer to the root node of the tree to check.
+Return: if tree is NULL, function must return 0.
+*/
 
 int binary_tree_is_perfect(const binary_tree_t *tree)
 {
-	int perfect = 0, l_height, r_height;
+	size_t h = 0, perfect_size = 0;
 
 	if (tree == NULL)
-		return (0);
-	l_height = binary_tree_height(tree->left);
-	r_height = binary_tree_height(tree->right);
-	if (l_height == r_height)
-		perfect = 1;
-	return (perfect);
+			return (0);
+	h = binary_tree_height(tree);
+	perfect_size = (1 << (h + 1)) - 1; /*this formular calculates the 
+	2 raised to the power of h+1 ie shifts the binary representation of 1 to the left by h+1*/
+	if (perfect_size == binary_tree_size(tree))
+			return (1);
+	else
+			return (0);
 }
