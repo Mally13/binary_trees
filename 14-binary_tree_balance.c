@@ -14,11 +14,11 @@ int max(int a, int b)
 
 
 /**
- * binary_tree_height - Calculates tha height of a tree
+ * binary_tree_h - Calculates tha height of a tree
  * @tree: tree to be evaluated
  * Return: height of the tree
  */
-int binary_tree_height(const binary_tree_t *tree)
+int binary_tree_h(const binary_tree_t *tree)
 {
 	int l_height, r_height, height;
 
@@ -26,8 +26,8 @@ int binary_tree_height(const binary_tree_t *tree)
 	{
 		return (-1);
 	}
-	l_height = binary_tree_height(tree->left);
-	r_height = binary_tree_height(tree->right);
+	l_height = binary_tree_h(tree->left);
+	r_height = binary_tree_h(tree->right);
 	height = 1 + max(l_height, r_height);
 	return (height);
 }
@@ -47,8 +47,8 @@ int binary_tree_balance(const binary_tree_t *tree)
 	{
 		return (0);
 	}
-	l_height = binary_tree_height(tree->left);
-	r_height = binary_tree_height(tree->right);
+	l_height = binary_tree_h(tree->left);
+	r_height = binary_tree_h(tree->right);
 	bf = l_height - r_height;
 	return (bf);
 }
